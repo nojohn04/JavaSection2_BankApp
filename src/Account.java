@@ -1,13 +1,14 @@
 public class Account {
     private static int lastId = 0;
 
-    public final int id = ++lastId;
+    public final int id;
 
     public String firstName;
     public String lastName;
     public double balance;
 
     public Account() {
+        id = lastId++;
         firstName = "Unknown";
         lastName = "Unknown";
         balance = 0.0;
@@ -17,8 +18,8 @@ public class Account {
     public Account(String firstName, String lastName) {
         this();
 
-        this.firstName = firstName;
-        this.lastName = lastName;
+        setFirstName(firstName);
+        setLastName(lastName);
 
     /*
     setFirstName(firstName);
@@ -28,6 +29,18 @@ public class Account {
 
     public static int getLastId() {
         return lastId;
+    }
+
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setFirstName(String firstName) {
+        if (firstName == null || firstName.isEmpty())
+            throw new IllegalArgumentException("Invalid first name! Name can't be blank for id: " + id);
+        else
+            this.firstName = firstName;
     }
 
 
@@ -42,5 +55,21 @@ public class Account {
         else
             this.lastName = lastName;
     }
+
+    public void deposit(double amount) {
+        if (amount <= 0)
+            throw new IllegalArgumentException("Invalid amount " + amount + ". Must be greater than 0.");
+        balance += amount;
+    }
+
+    public void withdrawal(double amount) {
+        if (amount <= 0)
+            throw new IllegalArgumentException("Invalid Amount " + amount + ". Must be greater than 0.");
+
+        if (amount > balance)
+            throw new IllegalArgumentException("Invalid Amount " + amount + ". Cannot be greater than the account balance.");
+    }
+
+
 }
 
