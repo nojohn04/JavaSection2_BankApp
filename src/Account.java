@@ -119,6 +119,7 @@ public class Account {
      * @overrides toString in class Object
      * @return the account's id and name
      */
+    @Override
     public String toString() {
         return  ("ID #" + id + ": " + firstName + " " + lastName);
     }
