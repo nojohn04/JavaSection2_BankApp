@@ -21,10 +21,6 @@ public class Account {
         setFirstName(firstName);
         setLastName(lastName);
 
-    /*
-    setFirstName(firstName);
-    setLastName(lastName);
-    */
     }
 
     public static int getLastId() {
