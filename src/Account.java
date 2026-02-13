@@ -14,19 +14,16 @@ public class Account {
         balance = 0.0;
     }
 
-
     public Account(String firstName, String lastName) {
         this();
 
         setFirstName(firstName);
         setLastName(lastName);
-
     }
 
     public static int getLastId() {
         return lastId;
     }
-
 
     public double getBalance() {
         return balance;
@@ -38,7 +35,6 @@ public class Account {
         else
             this.firstName = firstName;
     }
-
 
     /**
      * Allow setting of the account owner's last name.
@@ -53,19 +49,24 @@ public class Account {
     }
 
     public void deposit(double amount) {
-        if (amount <= 0)
+        if (amount <= 0) {
             throw new IllegalArgumentException("Invalid amount " + amount + ". Must be greater than 0.");
+        }
         balance += amount;
     }
 
     public void withdrawal(double amount) {
-        if (amount <= 0)
+        if (amount <= 0) {
             throw new IllegalArgumentException("Invalid Amount " + amount + ". Must be greater than 0.");
-
-        if (amount > balance)
+        }
+        if (amount > balance) {
             throw new IllegalArgumentException("Invalid Amount " + amount + ". Cannot be greater than the account balance.");
+        }
+        balance -= amount;
     }
 
-
+    public String toString() {
+        return  ("ID #" + id + ": " + firstName + " " + lastName);
+    }
 }
 
